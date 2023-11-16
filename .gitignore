@@ -1,0 +1,7 @@
+venv
+.venv
+.env
+env.py
+.vscode
+**DS_Store
+```
