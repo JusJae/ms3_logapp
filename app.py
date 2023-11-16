@@ -14,13 +14,14 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+# @app.route("/")
+# def index():
+#     return render_template("base.html")
+
 @app.route("/")
-def index():
-    return render_template("base.html")
-
-
 @app.route("/products")
 def products():
+    products = mongo.db.products.find()
     return render_template("products.html", products=products)
 
 
