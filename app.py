@@ -24,9 +24,30 @@ def index():
 
 @app.route("/products")
 def products():
-
     products = mongo.db.products.find()  # type: ignore
     return render_template("products.html", products=products)
+
+
+@app.route("/register", methods=["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
+@app.route("/logout")
+@app.route("/profile")
+@app.route("/add_product", methods=["GET", "POST"])
+def add_product():
+    # Your code here
+    pass
+
+
+@app.route("/edit_product/<product_id>", methods=["GET", "POST"])
+def edit_product(product_id):
+    # Your code here
+    pass
+
+
+@app.route("/delete_product/<product_id>")
+def delete_product(product_id):
+    # Your code here
+    pass
 
 
 if __name__ == "__main__":
