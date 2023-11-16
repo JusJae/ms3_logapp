@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{%block content%}
+
+<table>
+            <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Notes</th>
+                <th>Date Added</th>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.notes }}</td>
+                <td>{{ product.date_added }}</td>
+            </tr>
+            {% endfor %}
+</table>
+
+{%endblock%}
