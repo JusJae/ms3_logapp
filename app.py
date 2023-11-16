@@ -11,17 +11,21 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
+
 mongo = PyMongo(app)
+mongo.db = mongo.cx[app.config["MONGO_DBNAME"]]
+db = mongo.db
 
-
-# @app.route("/")
-# def index():
-#     return render_template("base.html")
 
 @app.route("/")
+def index():
+    return render_template("base.html")
+
+
 @app.route("/products")
 def products():
-    products = mongo.db.products.find()
+
+    products = mongo.db.products.find()  # type: ignore
     return render_template("products.html", products=products)
 
 
