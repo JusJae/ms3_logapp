@@ -1,1 +1,20 @@
+{% extends "base.html" %}
 
+{% block content %}
+
+
+<!-- Product list -->
+<h3 class="mt-5">Products</h3>
+<ul class="list-group" id="productList">
+    {% for product in products %}
+    <li class="list-group-item">
+        <img src="{{ product.image_url }}" alt="{{ product.name }}" height="50" class="mr-3">
+        {{ product.name }}
+        <span class="float-right">
+            <a href="#" class="mr-2"><i class="fas fa-edit"></i></a>
+            <a href="#" class="text-danger"><i class="fas fa-trash"></i></a>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
