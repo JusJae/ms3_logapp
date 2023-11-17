@@ -1,38 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-    <title>Log It All</title>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Log It All</title>
+		<!-- Favicon -->
+		<link
+			rel="icon"
+			href="https://img.icons8.com/ios-filled/50/000000/weight.png" />
+		<!-- CSS -->
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/style.css') }}"
+			type="text/css" />
+		<!-- Bootstrap CSS -->
+		<link
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			rel="stylesheet" />
+		<!-- Font Awesome -->
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+			rel="stylesheet" />
+	</head>
 
-    </nav>
-    <!-- Header -->
-    <header>
-        <h1>Log It All</h1>
-        <p>The Application to log all of your products at home!</p>
-    </header>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a
+				class="navbar-brand"
+				href="#"
+				>Log It All</a
+			>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div
+				class="collapse navbar-collapse"
+				id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a
+							class="nav-link"
+							href="#"
+							>Home</a
+						>
+					</li>
+					<li class="nav-item active">
+						<a
+							class="nav-link"
+							href="#"
+							>Search</a
+						>
+					</li>
+					<li class="nav-item active">
+						<a
+							class="nav-link"
+							href="#"
+							>Profile</a
+						>
+					</li>
+					<!-- Other navbar items here -->
+				</ul>
+			</div>
+		</nav>
 
-    <!-- Main Content -->
-    <main>
-        <div class="container">
+		<!-- Main content -->
+		<div class="container mt-5">{% block content %}{% endblock %}</div>
 
-        {% block content %}
-        {% endblock %}
+		<!-- Fixed Footer -->
+		<footer class="footer bg-light text-center py-3 fixed-bottom">
+			© 2023 Log It All. All rights reserved.
+		</footer>
 
-        </div>
-    </main>
+		<!-- Bootstrap JS and JQuery -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+		<!-- JS for interactive elements -->
 
-    <!-- Footer -->
-    <footer>
-
-    </footer>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
+		{% block scripts %}
+		<script>
+			// Example JS: Submit event for the product form
+			document
+				.getElementById("addProductForm")
+				.addEventListener("submit", function (e) {
+					e.preventDefault();
+					// Get product details from the form
+					let productName = document.getElementById("productName").value;
+					let productImage = document.getElementById("productImage").files[0];
+					// TODO: Upload image and product details to server
+					// Then update the product list
+					let productItem = document.createElement("li");
+					productItem.className = "list-group-item";
+					productItem.innerHTML = `${productName} 
+                <span class="float-right">
+                    <a href="#" class="mr-2"><i class="fas fa-edit"></i></a>
+                    <a href="#" class="text-danger"><i class="fas fa-trash"></i></a>
+                </span>`;
+					document.getElementById("productList").appendChild(productItem);
+					// Reset form and close modal
+					document.getElementById("productName").value = "";
+					$("#addProductModal").modal("hide");
+				});
+		</script>
+		{% endblock %}
+	</body>
 </html>
-```
