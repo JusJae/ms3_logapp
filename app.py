@@ -15,6 +15,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 mongo.db = mongo.cx[app.config["MONGO_DBNAME"]]
 db = mongo.db
+products = db.products
 
 
 @app.route("/")
@@ -32,6 +33,7 @@ def products():
 @app.route("/login", methods=["GET", "POST"])
 @app.route("/logout")
 @app.route("/profile")
+@app.route("/search")
 @app.route("/add_product", methods=["GET", "POST"])
 def add_product():
     # Your code here
