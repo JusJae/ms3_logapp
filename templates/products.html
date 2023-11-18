@@ -1,21 +1,22 @@
-{% extends "base.html" %}
-{%block content%}
+{% extends "base.html" %} {%block content%}
 
 <table>
-            <tr>
-                <th>Product</th>
-                <th>Category</th>
-                <th>Notes</th>
-                <th>Date Added</th>
-            </tr>
-            {% for product in products %}
-            <tr>
-                <td>{{ product.name }}</td>
-                <td>{{ product.category }}</td>
-                <td>{{ product.notes }}</td>
-                <td>{{ product.date_added }}</td>
-            </tr>
-            {% endfor %}
+	<tr>
+		<th>Product</th>
+		<th>Product Image</th>
+		<th>Category</th>
+		<th>Notes</th>
+		<th>Date Added</th>
+	</tr>
+	{% for product in products %}
+	<tr>
+		<td>{{ product.name }}</td>
+		<td>{{ product.image }}</td>
+		<td>{{ product.category }}</td>
+		<td>{{ product.notes }}</td>
+		<td>{{ product.date_added }}</td>
+	</tr>
+	{% endfor %}
 </table>
 
-{%endblock%}
+{% include 'add_product.html' %} {%endblock%}
