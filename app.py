@@ -80,20 +80,45 @@ def add_product():
     return render_template("add_product.html")
 
 
-@app.route("/register", methods=["GET", "POST"])
-@app.route("/login", methods=["GET", "POST"])
-@app.route("/logout")
-@app.route("/profile")
-@app.route("/search")
 @app.route("/edit_product/<product_id>", methods=["GET", "POST"])
 def edit_product(product_id):
-    # Your code here
-    pass
+    product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+    return render_template("edit_product.html", product=product)
 
 
 @app.route("/delete_product/<product_id>")
 def delete_product(product_id):
     # Your code here
+    pass
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    # Your code here
+    pass
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+
+    pass
+
+
+@app.route("/logout")
+def logout():
+
+    pass
+
+
+@app.route("/profile")
+def profile():
+
+    pass
+
+
+@app.route("/search")
+def search():
+
     pass
 
 
