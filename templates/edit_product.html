@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% block content %}
+<h3>Edit Product</h3>
+<form
+	id="editProductForm"
+	action="{{ url_for('edit_product, product_id=product._id')}}"
+	method="POST"
+	enctype="multipart/form-data">
+	<div class="form-group">
+		<label for="product_name">Product Name:</label>
+		<input
+			type="text"
+			class="form-control"
+			id="product_name"
+			name="product_name" />
+	</div>
+	<div>
+		<label for="image_url">Product Image:</label>
+		<input
+			type="file"
+			class="form-control"
+			id="image_url"
+			name="image_url" />
+	</div>
+	<div>
+		<label for="product_category">Product Category:</label>
+		<input
+			type="text"
+			class="form-control"
+			id="product_category"
+			name="product_category" />
+	</div>
+	<div>
+		<label for="product_notes">Product Notes:</label>
+		<input
+			type="text"
+			class="form-control"
+			id="product_notes"
+			name="product_notes" />
+	</div>
+	<div>
+		<label for="date_added">Date Added:</label>
+		<input
+			type="date"
+			class="form-control"
+			id="date_added"
+			name="date_added" />
+	</div>
+	<!-- Add other input fields as needed -->
+	<button
+		type="submit"
+		class="btn btn-primary">
+		Edit Product
+	</button>
+</form>
+
+{% endblock %}
