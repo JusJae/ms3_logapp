@@ -1,48 +1,56 @@
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
-<!-- Button to trigger modal for adding product -->
-<button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#addProductModal">
-    Add Product
-</button>
-<!-- Modal -->
-<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="addProductForm" action="/add_product" method="POST" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div>
-                        <label for="product_name">Product Name:</label>
-                        <input type="text" name="product_name" id="productName" required>
-                    </div>
-                    <div>
-                        <label for="image">Upload Product Image:</label>
-                    <input type="file" name="image" id=productImage" accept="image/*" required>
-                    </div>
-                    <div>
-                        <label for="product_category">Category:</label>
-                        <input type="text" name="product_category" id="productCategory" required>
-                    </div>
-                    <div>
-                        <label for="product_notes">Notes:</label>
-                        <input type="text" name="product_notes" id="productNotes">
-                    </div>
-                    <div>
-                    <input type="submit" value="Add Product">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save Product</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+<form
+	id="addProductForm"
+	action="{{ url_for('add_product')}}"
+	method="POST"
+	enctype="multipart/form-data">
+	<div class="form-group">
+		<label for="product_name">Product Name:</label>
+		<input
+			type="text"
+			class="form-control"
+			id="product_name"
+			name="product_name" />
+	</div>
+	<div>
+		<label for="image_url">Product Image:</label>
+		<input
+			type="file"
+			class="form-control"
+			id="image_url"
+			name="image_url" />
+	</div>
+	<div>
+		<label for="product_category">Product Category:</label>
+		<input
+			type="text"
+			class="form-control"
+			id="product_category"
+			name="product_category" />
+	</div>
+	<div>
+		<label for="product_notes">Product Notes:</label>
+		<input
+			type="text"
+			class="form-control"
+			id="product_notes"
+			name="product_notes" />
+	</div>
+	<div>
+		<label for="date_added">Date Added:</label>
+		<input
+			type="date"
+			class="form-control"
+			id="date_added"
+			name="date_added" />
+	</div>
+	<!-- Add other input fields as needed -->
+	<button
+		type="submit"
+		class="btn btn-primary">
+		Add Product
+	</button>
+</form>
 
 {% endblock %}
