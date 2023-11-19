@@ -2,7 +2,7 @@
 <h3>Edit Product</h3>
 <form
 	id="editProductForm"
-	action="{{ url_for('edit_product', product_id=product.id) }}"
+	action="{{ url_for('edit_product', product_id=product._id) }}"
 	method="POST"
 	enctype="multipart/form-data">
 	<div class="form-group">

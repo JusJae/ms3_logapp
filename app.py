@@ -83,6 +83,35 @@ def add_product():
 @app.route("/edit_product/<product_id>", methods=["GET", "POST"])
 def edit_product(product_id):
     product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+    if request.method == "POST":
+        product_name = request.form.get('product_name')
+        product_category = request.form.get('product_category')
+        product_notes = request.form.get('product_notes')
+        date_added = request.form.get('date_added')
+
+        # Handle the image file
+        image_file = request.files.get('image_url')
+        if image_file and allowed_file(image_file.filename):
+            filename = secure_filename(image_file.filename)
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            image_file.save(file_path)
+            # URL to access the image
+            image_url = f'/static/images/uploaded_images/{filename}'
+        else:
+            image_url = ''  # No image uploaded
+
+        submit = {
+            "product_name": product_name,
+            "product_category": product_category,
+            "product_notes": product_notes,
+            "image_url": image_url,
+            "date_added": date_added
+        }
+
+        mongo.db.products.update_one({"_id": ObjectId(product_id)}, {
+            "$set": submit})
+        flash("Product successfully updated")
+        return redirect(url_for("home"))
     return render_template("edit_product.html", product=product)
 
 
