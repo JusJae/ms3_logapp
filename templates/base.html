@@ -30,7 +30,7 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a
 				class="navbar-brand"
-				href="#"
+				href="{{ url_for('home') }}"
 				>Log It All</a
 			>
 			<button
@@ -50,8 +50,15 @@
 					<li class="nav-item active">
 						<a
 							class="nav-link"
-							href="#"
+							href="{{ url_for('home') }}"
 							>Home</a
+						>
+					</li>
+					<li class="nav-item active">
+						<a
+							class="nav-link"
+							href="{{ url_for('products') }}"
+							>Products</a
 						>
 					</li>
 					<li class="nav-item active">
@@ -84,34 +91,7 @@
 		<!-- Bootstrap JS and JQuery -->
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-		<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 		<!-- JS for interactive elements -->
-
-		{% block scripts %}
-		<script>
-			// Example JS: Submit event for the product form
-			document
-				.getElementById("addProductForm")
-				.addEventListener("submit", function (e) {
-					e.preventDefault();
-					// Get product details from the form
-					let productName = document.getElementById("productName").value;
-					let productImage = document.getElementById("productImage").files[0];
-					// TODO: Upload image and product details to server
-					// Then update the product list
-					let productItem = document.createElement("li");
-					productItem.className = "list-group-item";
-					productItem.innerHTML = `${productName} 
-                <span class="float-right">
-                    <a href="#" class="mr-2"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="text-danger"><i class="fas fa-trash"></i></a>
-                </span>`;
-					document.getElementById("productList").appendChild(productItem);
-					// Reset form and close modal
-					document.getElementById("productName").value = "";
-					$("#addProductModal").modal("hide");
-				});
-		</script>
-		{% endblock %}
+		<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 	</body>
 </html>
