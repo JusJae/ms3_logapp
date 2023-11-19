@@ -1,6 +1,7 @@
 import os
-from flask import Flask, render_template, url_for, request, redirect, session
+from flask import Flask, flash, render_template, url_for, request, redirect, session
 from flask_pymongo import PyMongo
+from werkzeug.utils import secure_filename
 from bson.objectid import ObjectId
 if os.path.exists("env.py"):
     import env
@@ -17,7 +18,6 @@ mongo.db = mongo.cx[app.config["MONGO_DBNAME"]]
 db = mongo.db
 
 
-
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -29,9 +29,9 @@ def products():
     return render_template("products.html", products=products)
 
 
+# Save the product details to MongoDB
 @app.route("/add_product", methods=["GET", "POST"])
 def add_product():
-    # Your code here
     return render_template("add_product.html")
 
 

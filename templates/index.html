@@ -1,22 +1,103 @@
-{% extends "base.html" %}
-
-{% block content %}
-
-<!-- Add product form -->
-{% include 'add_product.html' %}
+{% extends "base.html" %} {% block content %}
+<!-- Form to add product -->
+<h3>Add Product</h3>
+<form id="addProductForm">
+	<div class="form-group">
+		<label for="productName">Product Name:</label>
+		<input
+			type="text"
+			class="form-control"
+			id="productName" />
+	</div>
+	<div>
+		<label for="productImage">Product Image:</label>
+		<input
+			type="file"
+			class="form-control"
+			id="productImage" />
+	</div>
+	<div>
+		<label for="productCategory">Product Category:</label>
+		<input
+			type="text"
+			class="form-control"
+			id="productCategory" />
+	</div>
+	<div>
+		<label for="productNotes">Product Notes:</label>
+		<input
+			type="text"
+			class="form-control"
+			id="productNotes" />
+	</div>
+	<div>
+		<label for="dateAdded">Date Added:</label>
+		<input
+			type="date"
+			class="form-control"
+			id="dateAdded" />
+	</div>
+	<!-- Add other input fields as needed -->
+	<button
+		type="submit"
+		class="btn btn-primary">
+		Add Product
+	</button>
+</form>
 
 <!-- Product list -->
 <h3 class="mt-5">Products</h3>
-<ul class="list-group" id="productList">
-    {% for product in products %}
-    <li class="list-group-item">
-        <img src="{{ product.image_url }}" alt="{{ product.name }}" height="50" class="mr-3">
-        {{ product.name }}
-        <span class="float-right">
-            <a href="#" class="mr-2"><i class="fas fa-edit"></i></a>
-            <a href="#" class="text-danger"><i class="fas fa-trash"></i></a>
-        </span>
-    </li>
-    {% endfor %}
+<ul
+	class="list-group"
+	id="productList">
+	{% for product in products %}
+	<li class="list-group-item">
+		{{ product.name }} {{ product.image }} {{ product.category }} {{
+		product.notes }} {{ product.date_added }}
+		<span class="float-right">
+			<a
+				href="#"
+				class="mr-2"
+				><i class="fas fa-edit"></i
+			></a>
+			<a
+				href="#"
+				class="text-danger"
+				><i class="fas fa-trash"></i
+			></a>
+		</span>
+	</li>
+	{% endfor %}
 </ul>
+{% endblock %} {% block scripts %}
+<script>
+	// Example JS: Submit event for the product form
+	document
+		.getElementById("addProductForm")
+		.addEventListener("submit", function (e) {
+			e.preventDefault();
+			// Get product name from the form
+			let productName = document.getElementById("productName").value;
+			let productImage = document.getElementById("productImage").value;
+			let productCategory = document.getElementById("productCategory").value;
+			let productNotes = document.getElementById("productNotes").value;
+			let dateAdded = document.getElementById("dateAdded").value;
+
+			// Add the product to the list (you might want to do more here, like sending it to the server)
+			let productItem = document.createElement("li");
+			productItem.className = "list-group-item";
+			productItem.innerHTML = `${productName} ${productImage} ${productCategory} ${productNotes} ${dateAdded}
+            <span class="float-right">
+                <a href="#" class="mr-2"><i class="fas fa-edit"></i></a>
+                <a href="#" class="text-danger"><i class="fas fa-trash"></i></a>
+            </span>`;
+			document.getElementById("productList").appendChild(productItem);
+			// Reset form
+			document.getElementById("productName").value = "";
+			document.getElementById("productImage").value = "";
+			document.getElementById("productCategory").value = "";
+			document.getElementById("productNotes").value = "";
+			document.getElementById("dateAdded").value = "";
+		});
+</script>
 {% endblock %}

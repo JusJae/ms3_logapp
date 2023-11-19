@@ -14,23 +14,23 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="addProductForm" action="/add_product" method="post" enctype="multipart/form-data">
+            <form id="addProductForm" action="/add_product" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div>
                         <label for="product_name">Product Name:</label>
-                        <input type="text" name="product_name" id="product_name" required>
+                        <input type="text" name="product_name" id="productName" required>
                     </div>
                     <div>
                         <label for="image">Upload Product Image:</label>
-                    <input type="file" name="image" id="image" accept="image/*" required>
+                    <input type="file" name="image" id=productImage" accept="image/*" required>
                     </div>
                     <div>
                         <label for="product_category">Category:</label>
-                        <input type="text" name="product_category" id="product_category" required>
+                        <input type="text" name="product_category" id="productCategory" required>
                     </div>
                     <div>
                         <label for="product_notes">Notes:</label>
-                        <input type="text" name="product_notes" id="product_notes">
+                        <input type="text" name="product_notes" id="productNotes">
                     </div>
                     <div>
                     <input type="submit" value="Add Product">
