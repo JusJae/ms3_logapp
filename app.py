@@ -117,8 +117,8 @@ def edit_product(product_id):
 
 @app.route("/delete_product/<product_id>")
 def delete_product(product_id):
-    # Your code here
-    pass
+    mongo.db.products.delete_one({"_id": ObjectId(product_id)})
+    return redirect(url_for("home"))
 
 
 @app.route("/register", methods=["GET", "POST"])
