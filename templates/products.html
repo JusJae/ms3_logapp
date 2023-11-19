@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block content %}
+
+<!-- Product list -->
+{% include "product_list.html" %}
+<!-- FButton to form to add product -->
+<h3>Add Product</h3>
+<a
+	href="{{ url_for('add_product')}}"
+	class="btn btn-primary"
+	>Add Product</a
+>
+
+{% endblock %}

@@ -36,6 +36,12 @@ def home():
 @app.route("/products")
 def products():
     products = mongo.db.products.find()  # type: ignore
+    return render_template("products.html", products=products)
+
+
+@app.route("/product_list")
+def product_list():
+    products = mongo.db.products.find()  # type: ignore
     return render_template("product_list.html", products=products)
 
 
