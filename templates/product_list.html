@@ -17,7 +17,7 @@
 		<td>{{ product.date_added }}</td>
 		<td>
 			<a
-				href="{{ url_for('edit_product', product_id=product.id) }}"
+				href="{{ url_for('edit_product', product_id=product._id) }}"
 				class="mr-2"
 				><i class="fas fa-edit"></i
 			></a>
