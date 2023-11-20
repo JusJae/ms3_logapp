@@ -145,10 +145,11 @@ def profile():
     pass
 
 
-@app.route("/search")
+@app.route("/search", methods=["GET", "POST"])
 def search():
-
-    pass
+    query = request.form.get('query') or ''
+    products = list(mongo.db.products.find({"$text": {"$search": query}}))
+    return render_template("products.html", products=products)
 
 
 if __name__ == "__main__":
