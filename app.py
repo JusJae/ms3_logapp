@@ -122,6 +122,7 @@ def delete_product(product_id):
     return redirect(url_for("home"))
 
 
+# User Authentication from CI Walkthrough Project
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -139,7 +140,7 @@ def register():
         }
         mongo.db.users.insert_one(register)
 
-        # put the new user into 'session' cookie
+        # puts the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
     return render_template("register.html")
@@ -148,17 +149,17 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        # check if username exists in db
+        # checks if username exists in db
         existing_user = mongo.db.users.find_one(  # type: ignore
             {"username": request.form.get("username").lower()})
 
         if existing_user:
-            # ensure hashed password matches user input
+            # ensures hashed password matches user input
             if check_password_hash(  # type: ignore
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(  # type: ignore
-                    request.form.get("username")))  # in ms3 can do the same for name and then usernames
+                    request.form.get("username")))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
