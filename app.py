@@ -1,6 +1,7 @@
 import os
-from flask import Flask, flash, render_template, url_for, request, redirect
+from flask import Flask, flash, render_template, url_for, request, redirect, session
 from flask_pymongo import PyMongo
+from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from bson.objectid import ObjectId
 if os.path.exists("env.py"):
@@ -123,26 +124,68 @@ def delete_product(product_id):
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    # Your code here
-    pass
+    if request.method == "POST":
+        # check if username already exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.insert_one(register)
+
+        # put the new user into 'session' cookie
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Successful!")
+    return render_template("register.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if request.method == "POST":
+        # check if username exists in db
+        existing_user = mongo.db.users.find_one(  # type: ignore
+            {"username": request.form.get("username").lower()})
 
-    pass
+        if existing_user:
+            # ensure hashed password matches user input
+            if check_password_hash(  # type: ignore
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(  # type: ignore
+                    request.form.get("username")))  # in ms3 can do the same for name and then usernames
+            else:
+                # invalid password match
+                flash("Incorrect Username and/or Password")
+                return redirect(url_for("login"))
+
+        else:
+            # username doesn't exist
+            flash("Incorrect Username and/or Password")
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
 
 
 @app.route("/logout")
 def logout():
+    # remove user from session cookie
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("login"))
 
-    pass
 
-
-@app.route("/profile")
-def profile():
-
-    pass
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # grab the session user's username from db
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    return render_template("profile.html", username=username)
 
 
 @app.route("/search", methods=["GET", "POST"])
