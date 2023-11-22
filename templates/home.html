@@ -1,13 +1,25 @@
-{% extends "base.html" %} {% block content %}
+{% extends "index.html" %} {% block content %}
 <h1>Log It All</h1>
 
-<!-- Product list -->
-{% include "product_list.html" %}
-<!-- Form to add product -->
-<a
-	href="{{ url_for('add_product')}}"
-	class="btn btn-primary"
-	>Add Product</a
->
+<!-- Hero -->
+<div class="jumbotron">
+	<h1 class="display-4">Welcome to Log It All!</h1>
+	<p class="lead">This is a simple web app to log your products.</p>
+	<hr class="my-4" />
+	<p>You can add, edit, and delete products.</p>
+	<a
+		class="btn btn-primary btn-lg"
+		href="{{ url_for('register')}}"
+		role="button"
+		>Register</a
+	>
 
-{% endblock %}
+	<!-- Login button -->
+	<a
+		href="{{ url_for('login')}}"
+		class="btn btn-primary"
+		>Login</a
+	>
+
+	{% endblock %}
+</div>
