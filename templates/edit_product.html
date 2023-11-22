@@ -1,6 +1,7 @@
-{% extends "base.html" %} {% block content %}
-<h3>Edit Product</h3>
+{% extends "index.html" %} {% block content %}
+<h3 class="mt-3 text-center">Edit Product</h3>
 <form
+	class="product-form"
 	id="editProductForm"
 	action="{{ url_for('edit_product', product_id=product._id) }}"
 	method="POST"
@@ -53,7 +54,7 @@
 	<!-- Add other input fields as needed -->
 	<button
 		type="submit"
-		class="btn btn-primary">
+		class="btn btn-primary mt-3">
 		Edit Product
 	</button>
 </form>
