@@ -1,25 +1,40 @@
 {% extends "index.html" %} {% block content %}
-<h1>Log It All</h1>
-
 <!-- Hero -->
-<div class="jumbotron">
-	<h1 class="display-4">Welcome to Log It All!</h1>
-	<p class="lead">This is a simple web app to log your products.</p>
-	<hr class="my-4" />
-	<p>You can add, edit, and delete products.</p>
-	<a
-		class="btn btn-primary btn-lg"
-		href="{{ url_for('register')}}"
-		role="button"
-		>Register</a
-	>
+<div class="container text-center">
+	<div class="home-title">
+		<h1 class="small">
+			Welcome to<span class="display-4"
+				><br />
+				Log It All!</span
+			>
+		</h1>
+		<p class="login-text mt-3">
+			This is a simple web app to log your products.
+		</p>
+		<div class="image-container">
+			<img
+				class="home-image mb-2"
+				src="{{ url_for('static', filename='images/site_images/home-image.jpeg') }}"
+				alt="Log It All Hero Image" />
+		</div>
 
-	<!-- Login button -->
-	<a
-		href="{{ url_for('login')}}"
-		class="btn btn-primary"
-		>Login</a
-	>
+		<p class="mt-2">You can add, edit, and delete products.</p>
+		<div class="home-btns mb-3">
+			<a
+				class="btn btn-primary btn-lg"
+				href="{{ url_for('register')}}"
+				role="button"
+				>Register</a
+			>
 
-	{% endblock %}
+			<!-- Login button -->
+			<a
+				class="btn btn-primary btn-lg"
+				href="{{ url_for('login') }}"
+				role="button"
+				>Login</a
+			>
+		</div>
+	</div>
 </div>
+{% endblock %}
