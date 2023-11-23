@@ -1,5 +1,6 @@
 import os
-from flask import Flask, flash, render_template, url_for, request, redirect, session
+from flask import (Flask, flash, render_template,
+                   url_for, request, redirect, session)
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
@@ -158,8 +159,7 @@ def login():
             if check_password_hash(  # type: ignore
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
-                flash("Welcome, {}".format(  # type: ignore
-                    request.form.get("username")))
+                flash("Welcome, {}".format(request.form.get("username")))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
