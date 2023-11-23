@@ -100,7 +100,6 @@
 							class="validate"
 							placeholder="Search"
 							aria-label="Search" />
-						<label for="query"></label>
 						<button
 							class="btn btn-main"
 							type="submit">
@@ -114,8 +113,8 @@
 		<section>
 			{% with messages = get_flashed_messages() %} {% if messages %} {% for
 			message in messages %}
-			<div class="row flashes text-muted">
-				<h5 class="center-align">{{ message }}</h5>
+			<div class="flashes row text-muted">
+				<h5 class="flash-message center-align">{{ message }}</h5>
 			</div>
 			{% endfor %} {% endif %} {% endwith %}
 		</section>
