@@ -1,6 +1,7 @@
 :root {
     --main-color: hsl(271, 79%, 54%);
     --main-color-light: hsl(271, 79%, 75%);
+    --main-color-light-1: hsl(271, 79%, 85%);
     --main-color-dark: hsl(271, 79%, 34%);
 }
 
@@ -17,6 +18,33 @@ body {
 
 .navbar-index {
     background-color: var(--main-color);
+}
+
+/* .image-container{
+    width: 90%;
+    height: auto;
+} */
+
+img {
+    width: 60%;
+    /* height: auto;
+    padding: .5rem; */
+    border-radius: .5rem;
+    border: solid .1rem;
+}
+
+.home-btns a {
+    color: black;
+    background-color: var(--main-color-light-1) !important;
+    border: var(--main-color-dark) 2px solid !important;
+    margin: 0px 10px;
+}
+
+.home-btns a:hover {
+    background-color: var(--main-color-dark) !important;
+    color: white;
+    border: var(--main-color-light) 2px solid !important;
+    margin: 0px 10px;
 }
 
 .product-card {
@@ -47,7 +75,7 @@ body {
 
 .footer-text {
     color: white;
-    
+
 }
 
 .product-form {
