@@ -218,12 +218,14 @@ img {
 
 }
 
+.edit-profile-form,
 .login-form,
 .register-form {
     border: 1px solid var(--main-color-dark) !important;
     border-radius: .5rem !important;
 }
 
+.edit-profile-form .card-header,
 .login-form .card-header,
 .register-form .card-header {
     background-color: var(--main-color-dark) !important;
@@ -233,18 +235,21 @@ img {
     padding-top: 1rem !important;
 }
 
+.edit-profile-form .card-body,
 .login-form .card-body,
 .register-form .card-body {
     flex: 1 1 auto !important;
     padding: 1rem 1rem !important;
 }
 
+.edit-profile-form label,
 .login-form label,
 .register-form label {
     font-family: 'Exo' !important;
     font-weight: bold !important;
 }
 
+.edit-profile-form input,
 .login-form input,
 .register-form input {
     border: 1px solid var(--main-color-dark) !important;
@@ -252,6 +257,9 @@ img {
     font-family: 'Lato' !important;
 }
 
+.edit-profile-form input:focus,
+.edit-profile-form input:hover,
+.edit-profile-form input:active,
 .login-form input:focus,
 .login-form input:hover,
 .login-form input:active,
@@ -264,6 +272,7 @@ img {
     box-shadow: 0 0 0 0.25rem rgba(237, 170, 36, .5) !important;
 }
 
+.edit-profile-form .btn-main,
 .login-form .btn-main,
 .register-form .btn-main {
     color: var(--secondary-color-dark) !important;
@@ -272,6 +281,24 @@ img {
     margin: 1rem 0rem !important;
     font-family: 'Exo' !important;
     font-weight: bold !important;
+}
+
+.edit-profile-form .btn-main:hover,
+.edit-profile-form .btn-main:focus,
+.edit-profile-form .btn-main:active,
+.login-form .btn-main:hover,
+.login-form .btn-main:focus,
+.login-form .btn-main:active,
+.register-form .btn-main:hover,
+.register-form .btn-main:focus,
+.register-form .btn-main:active {
+    background-color: var(--main-color-dark) !important;
+    color: var(--secondary-color-light) !important;
+    border: var(--main-color-light) 2px solid !important;
+    margin: 1rem 0rem !important;
+    box-shadow: 0 0 0 0.25rem hsla(52,
+            85%,
+            44%, 0.5) !important;
 }
 
 .category-form,
