@@ -13,7 +13,22 @@
 				<div class="card-body">
 					<form
 						method="POST"
-						action="{{ url_for('edit_profile', username=username) }}"
+						action="{{ url_for('edit_profile', username=username) }}">
+						<div class="mb-3">
+							<label
+								for="username"
+								class="form-label"
+								>Current Username</label
+							>
+							<input
+								type="text"
+								class="form-control validate"
+								id="current_username"
+								value="{{ username.capitalize() }}"
+								name="current_username"
+								minlength="3"
+								required />
+						</div>
 						<div class="mb-3">
 							<label
 								for="username"
@@ -24,12 +39,27 @@
 								type="text"
 								class="form-control validate"
 								id="username"
-								value="{{ username.capitalize() }}"
 								name="username"
 								minlength="3"
 								required />
 						</div>
-
+						<div class="mb-3">
+							<label
+								for="current_password"
+								class="form-label">
+								Current Password
+							</label>
+							<input
+								type="password"
+								class="form-control validate"
+								id="current_password"
+								value=""
+								name="current_password"
+								minlength="5"
+								maxlength="20"
+								pattern="^[a-zA-Z0-9]{5,20}$"
+								required />
+						</div>
 						<div class="mb-3">
 							<label
 								for="password"
@@ -40,7 +70,6 @@
 								type="password"
 								class="form-control"
 								id="password"
-								value="{{ password }}}"
 								name="password"
 								minlength="5"
 								maxlength="20"

@@ -1,3 +1,4 @@
+from werkzeug.security import check_password_hash
 import os
 from flask import (Flask, flash, render_template,
                    url_for, request, redirect, session)
@@ -93,20 +94,46 @@ def profile(username):
 
 @app.route("/profile/edit/<username>", methods=["GET", "POST"])
 def edit_profile(username):
-    username = mongo.db.users.find_one(
+    current_username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    if session["user"]:
-        if request.method == "POST":
-            submit = {
-                "username": request.form.get("username").lower(),
-                "password": generate_password_hash(request.form.get("password"))
-            }
-            mongo.db.users.update_one({"username": session["user"]}, {
-                "$set": submit})
-            flash("Profile successfully updated")
-            return redirect(url_for("profile", username=username))
 
-        return render_template("edit_profile.html", username=username)
+    if session["user"] and session["user"] == username:
+        user_data = mongo.db.users.find_one({"username": current_username})
+        # Retrieve the hashed password
+        current_password = user_data["password"]
+
+        if request.method == "POST":
+            new_username = request.form.get("username").lower()
+            new_password = request.form.get("password")
+            current_password_input = request.form.get("current_password")
+
+            # Check if the new username already exists in the database
+            existing_user = mongo.db.users.find_one(
+                {"username": new_username})
+            if existing_user and new_username != current_username:
+                flash("Username already exists")
+                return redirect(url_for("edit_profile", username=username))
+
+            # Check if the current password matches the one in the database
+            if check_password_hash(current_password, current_password_input):
+                # Update the profile details
+                submit = {
+                    "username": new_username,
+                }
+
+                # Update the password only if it's provided and different
+                if new_password and new_password != current_password:
+                    submit["password"] = generate_password_hash(new_password)
+
+                mongo.db.users.update_one(
+                    {"username": current_username}, {"$set": submit})
+                flash("Profile successfully updated")
+                return redirect(url_for("profile", username=new_username))
+            else:
+                flash("Incorrect current password")
+                return redirect(url_for("edit_profile", username=username))
+
+        return render_template("edit_profile.html", username=current_username, password=current_password)
 
     else:
         flash("You must be logged in to view your profile")
