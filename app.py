@@ -64,26 +64,19 @@ def register():
 def login():
     if request.method == "POST":
         # checks if username exists in db
-        existing_user = mongo.db.users.find_one(  # type: ignore
-            {"username": request.form.get("username").lower()})
+        entered_username = request.form.get("username").lower()
+        existing_user = mongo.db.users.find_one({"username": entered_username})
 
-        if existing_user:
-            # ensures hashed password matches user input
-            if check_password_hash(  # type: ignore
-                    existing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("username").lower()
-                flash("Welcome, {}".format(request.form.get("username")))
-                return redirect(url_for("profile", username=session["user"]))
-            else:
-                # invalid password match
-                flash("Incorrect Username and/or Password")
-                return redirect(url_for("login"))
-
+        if existing_user and check_password_hash(existing_user["password"], request.form.get("password")):
+            # Valid username and password
+            session["user"] = entered_username
+            flash("Welcome, {}".format(entered_username))
+            return redirect(url_for("profile", username=session["user"]))
         else:
-            # username doesn't exist
+            # Invalid username or password
             flash("Incorrect Username and/or Password")
-            return redirect(url_for("login"))
 
+    # For GET request or unsuccessful login attempt, render login page
     return render_template("login.html")
 
 
@@ -98,11 +91,33 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+@app.route("/profile/edit/<username>", methods=["GET", "POST"])
+def edit_profile(username):
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    if session["user"]:
+        if request.method == "POST":
+            submit = {
+                "username": request.form.get("username").lower(),
+                "password": generate_password_hash(request.form.get("password"))
+            }
+            mongo.db.users.update_one({"username": session["user"]}, {
+                "$set": submit})
+            flash("Profile successfully updated")
+            return redirect(url_for("profile", username=username))
+
+        return render_template("edit_profile.html", username=username)
+
+    else:
+        flash("You must be logged in to view your profile")
+        return redirect(url_for("login"))
+
+
 @app.route("/logout")
 def logout():
-    flash("You have been logged out")
     session.pop("user", None)
-    return redirect(url_for("login"))
+    flash("You have been logged out")
+    return redirect(url_for("home"))
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -217,8 +232,10 @@ def delete_product(product_id):
 
 @app.route("/categories")
 def categories():
-    product_categories = mongo.db.categories.find()
+    product_categories = list(
+        mongo.db.categories.find().sort("product_category_name", 1))
     return render_template("product_categories.html", product_categories=product_categories)
+
 
 
 if __name__ == "__main__":
