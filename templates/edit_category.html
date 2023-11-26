@@ -1,0 +1,48 @@
+{% extends "index.html" %} {% block content %}
+<h3 class="mt-3 text-center">Edit Product</h3>
+<form
+	class="category-form"
+	id="editCategoryForm"
+	action="{{ url_for('edit_category', category_id=product_category._id) }}"
+	method="POST"
+	enctype="multipart/form-data">
+	<div class="form-group">
+			<i
+				class="fa fa-plus-square"
+				aria-hidden="true"></i>
+			<label for="product_category_name">Product Category Name:</label>
+			<input
+				type="text"
+				class="form-control validate"
+				id="product_category_name"
+				name="product_category_name"
+				minlength="3"
+				maxlength="25"
+				value="{{ product_category.product_category_name }}"
+				required />
+	</div>
+			<div class="mt-3">
+			<i
+				class="fas fa-pencil-alt"
+				aria-hidden="true"></i>
+			<label for="product_category_description"
+				>Product Category Description:</label
+			>
+			<textarea
+				type="text"
+				class="form-control validate mt-2"
+				id="product_category_description"
+				name="product_category_description"
+				rows="3"
+				value="{{ product_category.product_category_description}}">
+			</textarea>
+		</div>
+	<div>
+	<button
+		type="submit"
+		class="btn btn-primary mt-3">
+		Edit Product
+	</button>
+</form>
+
+{% endblock %}
