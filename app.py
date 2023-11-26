@@ -66,18 +66,19 @@ def login():
     if request.method == "POST":
         # checks if username exists in db
         entered_username = request.form.get("username").lower()
+        entered_password = request.form.get("password")
+
         existing_user = mongo.db.users.find_one({"username": entered_username})
 
-        if existing_user and check_password_hash(existing_user["password"], request.form.get("password")):
+        if existing_user and check_password_hash(existing_user["password"], entered_password):
             # Valid username and password
             session["user"] = entered_username
-            flash("Welcome, {}".format(entered_username))
+            flash("Welcome, {}".format(entered_username.capitalize()))
             return redirect(url_for("profile", username=session["user"]))
         else:
             # Invalid username or password
             flash("Incorrect Username and/or Password")
 
-    # For GET request or unsuccessful login attempt, render login page
     return render_template("login.html")
 
 
