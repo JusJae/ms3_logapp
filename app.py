@@ -253,6 +253,32 @@ def add_category():
     return render_template("add_category.html")
 
 
+@app.route("/edit_category/<category_id>", methods=["GET", "POST"])
+def edit_category(category_id):
+    if request.method == "POST":
+        product_category_name = request.form.get('product_category_name')
+        product_category_description = request.form.get(
+            'product_category_description')
+        submit = {
+            "product_category_name": product_category_name,
+            "product_category_description": product_category_description
+        }
+        mongo.db.categories.update_one({"_id": ObjectId(category_id)}, {
+            "$set": submit})
+        flash("Product category successfully updated")
+        return redirect(url_for("categories"))
+
+    product_category = mongo.db.categories.find_one(
+        {"_id": ObjectId(category_id)})
+    return render_template("edit_category.html", product_category=product_category)
+
+
+@app.route("/delete_category/<category_id>")
+def delete_category(category_id):
+    mongo.db.categories.delete_one({"_id": ObjectId(category_id)})
+    return redirect(url_for("categories"))
+
+
 if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP", "0.0.0.0"),
