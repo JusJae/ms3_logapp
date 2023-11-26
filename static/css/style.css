@@ -218,6 +218,62 @@ img {
 
 }
 
+.login-form,
+.register-form {
+    border: 1px solid var(--main-color-dark) !important;
+    border-radius: .5rem !important;
+}
+
+.login-form .card-header,
+.register-form .card-header {
+    background-color: var(--main-color-dark) !important;
+    color: var(--secondary-color-light) !important;
+    font-family: 'Exo' !important;
+    font-weight: bold !important;
+    padding-top: 1rem !important;
+}
+
+.login-form .card-body,
+.register-form .card-body {
+    flex: 1 1 auto !important;
+    padding: 1rem 1rem !important;
+}
+
+.login-form label,
+.register-form label {
+    font-family: 'Exo' !important;
+    font-weight: bold !important;
+}
+
+.login-form input,
+.register-form input {
+    border: 1px solid var(--main-color-dark) !important;
+    border-radius: .5rem !important;
+    font-family: 'Lato' !important;
+}
+
+.login-form input:focus,
+.login-form input:hover,
+.login-form input:active,
+.register-form input:focus,
+.register-form input:hover,
+.register-form input:active {
+    outline: none !important;
+    border: 1px solid var(--main-color) !important;
+    border-radius: .5rem !important;
+    box-shadow: 0 0 0 0.25rem rgba(237, 170, 36, .5) !important;
+}
+
+.login-form .btn-main,
+.register-form .btn-main {
+    color: var(--secondary-color-dark) !important;
+    background-color: var(--main-color-light-1) !important;
+    border: var(--main-color-dark) 2px solid !important;
+    margin: 1rem 0rem !important;
+    font-family: 'Exo' !important;
+    font-weight: bold !important;
+}
+
 .category-form,
 .product-form {
     border: 1px solid var(--main-color-light);

@@ -1,12 +1,12 @@
 {% extends "index.html" %} {% block content %}
 <div class="container py-5">
-	<div class="row justify-content-center">
-		<div class="col-md-6">
-			<div class="card">
+	<div class="row justify-content-center ">
+		<div class="col-md-6 ">
+			<div class="card register-form">
 				<div
 					class="card-header"
 					style="background-color: var(--main-color); color: white">
-					Register
+					<h4>Register</h4>
 				</div>
 				<div class="card-body">
 					<form
@@ -16,7 +16,8 @@
 							<label
 								for="username"
 								class="form-label"
-								>Username</label>
+								>Username</label
+							>
 							<input
 								type="text"
 								class="form-control validate"
@@ -26,19 +27,19 @@
 								minlength="3"
 								required />
 						</div>
-						
+
 						<div class="mb-3">
 							<label
 								for="password"
 								class="form-label">
-                                Password
-                            </label>
+								Password
+							</label>
 							<input
 								type="password"
-								class="form-control"
+								class="form-control validate"
 								id="password"
 								placeholder="Password"
-                                name="password"
+								name="password"
 								minlength="5"
 								maxlength="20"
 								pattern="^[a-zA-Z0-9]{5,20}$"
