@@ -237,6 +237,21 @@ def categories():
     return render_template("product_categories.html", product_categories=product_categories)
 
 
+@app.route("/add_category", methods=["GET", "POST"])
+def add_category():
+    if request.method == "POST":
+        product_category_name = request.form.get('product_category_name')
+        product_category_description = request.form.get(
+            'product_category_description')
+        category = {
+            "product_category_name": product_category_name,
+            "product_category_description": product_category_description
+        }
+        mongo.db.categories.insert_one(category)
+        flash("Product Category successfully added")
+        return redirect(url_for("categories"))
+    return render_template("add_category.html")
+
 
 if __name__ == "__main__":
     app.run(
