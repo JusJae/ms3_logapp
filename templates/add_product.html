@@ -2,13 +2,15 @@
 <h3 class="mt-3 text-center">Add New Product</h3>
 <div class="container">
 	<form
-		style="max-width: 500px; margin: 0 auto"
 		id="addProductForm"
 		action="{{ url_for('add_product')}}"
 		method="POST"
 		enctype="multipart/form-data"
 		class="product-form">
 		<div class="form-group">
+			<i
+				class="fa fa-plus-square"
+				aria-hidden="true"></i>
 			<label for="product_name">Product Name:</label>
 			<input
 				type="text"
@@ -17,6 +19,9 @@
 				name="product_name" />
 		</div>
 		<div>
+			<i
+				class="fa fa-camera"
+				aria-hidden="true"></i>
 			<label for="image_url">Product Image:</label>
 			<input
 				type="file"
@@ -25,23 +30,45 @@
 				name="image_url" />
 		</div>
 		<div>
+			<i
+				class="fa fa-filter"
+				aria-hidden="true"></i>
 			<label for="product_category">Product Category:</label>
-			<input
-				type="text"
-				class="form-control"
+			<select
 				id="product_category"
-				name="product_category" />
+				name="product_category"
+				class="validate"
+				required>
+				<option
+					value=""
+					disabled
+					selected>
+					Choose Category
+				</option>
+				{% for product_category in product_categories %}
+				<option value="{{ product_category.product_category_name }}">
+					{{ product_category.product_category_name }}
+				</option>
+				{% endfor %}
+			</select>
 		</div>
 		<div>
+			<i
+				class="fas fa-pencil-alt"
+				aria-hidden="true"></i>
 			<label for="product_notes">Product Notes:</label>
 			<textarea
 				type="text"
 				class="form-control"
 				id="product_notes"
 				name="product_notes"
-				rows="3"></textarea>
+				rows="3">
+			</textarea>
 		</div>
 		<div>
+			<i
+				class="fa fa-calendar-alt"
+				aria-hidden="true"></i>
 			<label for="date_added">Date Added:</label>
 			<input
 				type="date"
@@ -49,7 +76,6 @@
 				id="date_added"
 				name="date_added" />
 		</div>
-		<!-- Add other input fields as needed -->
 		<button
 			type="submit"
 			class="btn btn-primary mt-3">
