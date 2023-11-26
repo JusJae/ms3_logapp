@@ -1,6 +1,4 @@
-{% extends "index.html" %} 
-
-{% block content %}
+{% extends "index.html" %} {% block content %}
 
 <h3 class="page-title mt-3 text-center">Product Log</h3>
 
@@ -21,15 +19,14 @@
 				aria-label="Search"
 				required />
 			<label for="query"></label>
+			<button
+				class="btn btn-warning btn-sm my-0 p"
+				type="submit">
+				<i class="fas fa-search"></i>
+			</button>
 		</div>
-		<div class="container">
-			<div
-				class="row row-cols-1 row-cols-sm-2 row-cols-md-4 justify-content-between">
-				<button
-					type="submit"
-					class="col btn btn-primary text-shadow">
-					<i class="fas fa-search left p-1"></i>Search
-				</button>
+		<div class="container flex-grow-1 w-25">
+			<div class="row justify-content-around">
 				<a
 					href="{{ url_for('products') }}"
 					class="col btn btn-danger text-shadow"
@@ -40,17 +37,17 @@
 	</form>
 </div>
 
-<!-- Add product button -->
-<div class="add-btn">
-	<a
-		href="{{ url_for('add_product')}}"
-		class="btn btn-primary"
-		>Add Product</a
-	>
-</div>
 <!-- Products Grid -->
+<!-- Add product button -->
 <div class="container py-4 flex-grow-1">
-    
+	<div class="add-btn row justify-content-around m-4">
+		<a
+			href="{{ url_for('add_product')}}"
+			class="btn btn-primary text-shadow"
+			>Add Product</a
+		>
+	</div>
+	<!-- User Products Grid -->
 	<div class="row row-cols-1 row-cols-md-3 g-4">
 		{% for product in products %}
 		<div class="col">
@@ -63,6 +60,7 @@
 					<h5 class="card-title">{{ product.product_name }}</h5>
 					<p class="card-text">{{ product.date_added }}</p>
 				</div>
+				{% if session.user|lower == products.created_by|lower %}
 				<div class="card-footer">
 					<a
 						class="btn btn-primary"
@@ -80,6 +78,7 @@
 						<i class="fas fa-info"></i>
 					</button>
 				</div>
+				{% endif %}
 			</div>
 		</div>
 		{% endfor %}
