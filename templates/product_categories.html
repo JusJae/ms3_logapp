@@ -1,0 +1,45 @@
+{% extends "index.html" %} {% block content %}
+
+<h2 class="text-center mt-5">Manage Product Categories</h2>
+<div class="container-fluid">
+	<div class="add-btn row justify-content-around m-4">
+		<a
+			href="{{ url_for('add_category')}}"
+			class="btn btn-primary text-shadow"
+			>Add Category</a
+		>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-hover mt-4">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Product Category</th>
+					<th scope="col">Category Description</th>
+					<th scope="col">Edit</th>
+					<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			{% for product_category in product_categories %}
+			<tr>
+				<td>{{ product_category.product_category_name }}</td>
+				<td>{{ product_category.product_category_description }}</td>
+				<td>
+					<a
+						href="{{ url_for('edit_category', category_id=product_category._id) }}"
+						class="btn btn-primary mr-2"
+						><i class="fas fa-edit"></i
+					></a>
+				</td>
+				<td>
+					<a
+						href=""
+						class="btn btn-danger"
+						><i class="fas fa-trash"></i
+					></a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+</div>
+{% endblock %}
