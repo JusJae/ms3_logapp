@@ -35,16 +35,105 @@ def home():
     return render_template("home.html", products=products)
 
 
+# User Authentication from CI Walkthrough Project
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        # check if username already exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.insert_one(register)
+
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Successful!")
+        return redirect(url_for("profile", username=session["user"]))
+
+    return render_template("register.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        # checks if username exists in db
+        existing_user = mongo.db.users.find_one(  # type: ignore
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            # ensures hashed password matches user input
+            if check_password_hash(  # type: ignore
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(request.form.get("username")))
+                return redirect(url_for("profile", username=session["user"]))
+            else:
+                # invalid password match
+                flash("Incorrect Username and/or Password")
+                return redirect(url_for("login"))
+
+        else:
+            # username doesn't exist
+            flash("Incorrect Username and/or Password")
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    if session["user"]:
+        return render_template("profile.html", username=username)
+    else:
+        flash("You must be logged in to view your profile")
+    return redirect(url_for("login"))
+
+
+@app.route("/logout")
+def logout():
+    flash("You have been logged out")
+    session.pop("user", None)
+    return redirect(url_for("login"))
+
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get('query') or ''
+    user = session['user']
+
+    if user == '':
+        flash("You must be logged in to search products")
+        return redirect(url_for("login"))
+    else:
+        products = list(mongo.db.products.find(
+            {"$and": [{"created_by": user}, {"$text": {"$search": query}}]}))
+        return render_template("products.html", products=products)
+
+
 @app.route("/products")
 def products():
-    products = mongo.db.products.find()  # type: ignore
+    if session['user'] == '':
+        flash("You must be logged in to view products")
+        return redirect(url_for("login"))
+    else:
+        user = session['user']
+        products = list(mongo.db.products.find({"created_by": user}))
     return render_template("products.html", products=products)
 
 
-@app.route("/product_list")
-def product_list():
-    products = mongo.db.products.find()  # type: ignore
-    return render_template("product_list.html", products=products)
+@app.route("/products/<product_id>")
+def product(product_id):
+    product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+    return render_template("product.html", product=product)
 
 
 @app.route("/add_product", methods=["GET", "POST"])
@@ -71,15 +160,16 @@ def add_product():
             "product_category": product_category,
             "product_notes": product_notes,
             "image_url": image_url,
-            "date_added": date_added
+            "date_added": date_added,
+            "created_by": session.get('user', '')
         }
 
         mongo.db.products.insert_one(product)
-        # Return the product data in the response
         flash("Product successfully added")
-        return redirect(url_for("home"))
+        return redirect(url_for("products"))
 
-    return render_template("add_product.html")
+    product_categories = mongo.db.categories.find().sort("product_category_name", 1)
+    return render_template("add_product.html", product_categories=product_categories)
 
 
 @app.route("/edit_product/<product_id>", methods=["GET", "POST"])
@@ -107,93 +197,28 @@ def edit_product(product_id):
             "product_category": product_category,
             "product_notes": product_notes,
             "image_url": image_url,
-            "date_added": date_added
+            "date_added": date_added,
+            "created_by": session['user']
         }
 
         mongo.db.products.update_one({"_id": ObjectId(product_id)}, {
             "$set": submit})
         flash("Product successfully updated")
-        return redirect(url_for("home"))
-    return render_template("edit_product.html", product=product)
+        product_categories = mongo.db.categories.find().sort("product_category_name", 1)
+    return render_template("edit_product.html", product=product, product_categories=product_categories)
 
 
 @app.route("/delete_product/<product_id>")
 def delete_product(product_id):
     mongo.db.products.delete_one({"_id": ObjectId(product_id)})
-    return redirect(url_for("home"))
+    flash("Product successfully deleted")
+    return redirect(url_for("products"))
 
 
-# User Authentication from CI Walkthrough Project
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    if request.method == "POST":
-        # check if username already exists in db
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
-
-        if existing_user:
-            flash("Username already exists")
-            return redirect(url_for("register"))
-
-        register = {
-            "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
-        }
-        mongo.db.users.insert_one(register)
-
-        # puts the new user into 'session' cookie
-        session["user"] = request.form.get("username").lower()
-        flash("Registration Successful!")
-    return render_template("register.html")
-
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if request.method == "POST":
-        # checks if username exists in db
-        existing_user = mongo.db.users.find_one(  # type: ignore
-            {"username": request.form.get("username").lower()})
-
-        if existing_user:
-            # ensures hashed password matches user input
-            if check_password_hash(  # type: ignore
-                    existing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("username").lower()
-                flash("Welcome, {}".format(request.form.get("username")))
-            else:
-                # invalid password match
-                flash("Incorrect Username and/or Password")
-                return redirect(url_for("login"))
-
-        else:
-            # username doesn't exist
-            flash("Incorrect Username and/or Password")
-            return redirect(url_for("login"))
-
-    return render_template("login.html")
-
-
-@app.route("/logout")
-def logout():
-    # remove user from session cookie
-    flash("You have been logged out")
-    session.pop("user")
-    return redirect(url_for("login"))
-
-
-@app.route("/profile/<username>", methods=["GET", "POST"])
-def profile(username):
-    # grab the session user's username from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    return render_template("profile.html", username=username)
-
-
-@app.route("/search", methods=["GET", "POST"])
-def search():
-    query = request.form.get('query') or ''
-    products = list(mongo.db.products.find({"$text": {"$search": query}}))
-    return render_template("products.html", products=products)
+@app.route("/categories")
+def categories():
+    product_categories = mongo.db.categories.find()
+    return render_template("product_categories.html", product_categories=product_categories)
 
 
 if __name__ == "__main__":
