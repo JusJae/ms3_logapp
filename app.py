@@ -123,9 +123,9 @@ def logout():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get('query') or ''
-    user = session['user']
+    user = session.get('user', '')
 
-    if user == '':
+    if not user:
         flash("You must be logged in to search products")
         return redirect(url_for("login"))
     else:
