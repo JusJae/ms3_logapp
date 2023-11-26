@@ -1,0 +1,46 @@
+{% extends "index.html" %} {% block content %}
+<h3 class="mt-5 text-center">Add New Category</h3>
+<div class="container mt-3">
+	<form
+		id="addCategoryForm"
+		action="{{ url_for('add_category')}}"
+		method="POST"
+		enctype="multipart/form-data"
+		class="category-form">
+		<div class="form-group">
+			<i
+				class="fa fa-plus-square"
+				aria-hidden="true"></i>
+			<label for="product_category_name">Product Category Name:</label>
+			<input
+				type="text"
+				class="form-control validate"
+				id="product_category_name"
+				name="product_category_name"
+				minlength="3"
+				maxlength="25"
+				required />
+		</div>
+		<div class="mt-3">
+			<i
+				class="fas fa-pencil-alt"
+				aria-hidden="true"></i>
+			<label for="product_category_description"
+				>Product Category Description:</label
+			>
+			<textarea
+				type="text"
+				class="form-control validate mt-2"
+				id="product_category_description"
+				name="product_category_description"
+				rows="3">
+			</textarea>
+		</div>
+		<button
+			type="submit"
+			class="btn btn-primary mt-3">
+			Add Category
+		</button>
+	</form>
+</div>
+{% endblock %}
