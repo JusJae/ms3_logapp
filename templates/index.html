@@ -87,11 +87,10 @@
 								>Products</a
 							>
 						</li>
-
 						<li class="nav-item">
 							<a
 								class="nav-link"
-								href="{{ url_for('login') }}"
+								href="{{ url_for('logout') }}"
 								>Logout</a
 							>
 						</li>
@@ -135,12 +134,13 @@
 				</div>
 			</div>
 		</nav>
+
 		<!-- flash messages -->
 		<section>
 			{% with messages = get_flashed_messages() %} {% if messages %} {% for
 			message in messages %}
 			<div class="flashes row text-muted">
-				<h5 class="flash-message center-align">{{ message }}</h5>
+				<h5 class="flash-message text-center">{{ message }}</h5>
 			</div>
 			{% endfor %} {% endif %} {% endwith %}
 		</section>
