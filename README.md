@@ -1,8 +1,8 @@
 # Log It All (Product Log Application )
 
-(Developer: Jae Phillips)
+---
 
-![Responsive mockup image](docs/features/amiresponsive.png)
+![Responsive mockup image](/docs/readme-assets/amiresponsive-img.png)
 
 > [Live Page](https://ms3-logapp-311629709e3f.herokuapp.com/)
 
@@ -23,41 +23,47 @@ TOC
 
 1. #### Account Management
 
- - As a new user, I want to register for an account so that I can access the product log app.
- - As a registered user, I want to log in to the application so that I can manage my product list.
- - As a registered user, I want to reset my password in case I forget it.
+- As a new user, I want to register for an account so that I can access the product log app.
+- As a registered user, I want to log in to the application so that I can manage my product list.
+- As a registered user, I want to reset my password in case I forget it.
 
 2. #### Product Management
 
- - As a user, I want to add a new product to my list, including its image, so that I can keep track of my products.
- - As a user, I want to view all my products in a list or grid view so that I can easily navigate through them.
- - As a user, I want to update the details of a product, including changing its image, to keep my product information current.
- - As a user, I want to delete a product from my list when I no longer need it.
+- As a user, I want to add a new product to my list, including its image, so that I can keep track of my products.
+- As a user, I want to view all my products in a list or grid view so that I can easily navigate through them.
+- As a user, I want to update the details of a product, including changing its image, to keep my product information current.
+- As a user, I want to delete a product from my list when I no longer need it.
 
 3. #### Search and Filter
 
- - As a user, I want to search for a product by its name to quickly find specific products.
- - As a user, I want to filter products by categories to view products of a specific type.
- - As a user, I want to sort products by the date they were added to see recent additions first.
+- As a user, I want to search for a product by its name to quickly find specific products.
+- As a user, I want to filter products by categories to view products of a specific type.
+- As a user, I want to sort products by the date they were added to see recent additions first.
+
 4. Navigation and Layout:
- - As a user, I want a responsive layout so that I can access the application effectively on both desktop and mobile devices.
- - As a user, I want a fixed bottom footer with relevant links and information.
- - As a user, I want a navigation menu to quickly move between different sections of the application.
+
+- As a user, I want a responsive layout so that I can access the application effectively on both desktop and mobile devices.
+- As a user, I want a fixed bottom footer with relevant links and information.
+- As a user, I want a navigation menu to quickly move between different sections of the application.
 
 5. #### Pagination and Performance
 
- - As a user, I want to view products in paginated lists so that I don’t get overwhelmed with too much data at once and the app loads faster.
+- As a user, I want to view products in paginated lists so that I don’t get overwhelmed with too much data at once and the app loads faster.
 
-6. #### Accessibility:
-   
- - As a user with visual impairments, I want the application to be screen-reader friendly so that I can navigate and use the app effectively.
- - As a user with motor impairments, I want to navigate the application using keyboard shortcuts.
-7. #### Cloud Storage and Media Management:
- - As a user, I want my uploaded product images to be stored securely and load fast.
- - As a user, I want the application to only accept valid image files to ensure consistency and safety.
-8. #### Error Handling and Feedback:
- - As a user, I want to receive clear error messages when something goes wrong so that I understand what happened and how to proceed.
- - As a user, I want to receive feedback when my actions (like adding a product) are successful.
+6. #### Accessibility
+
+- As a user with visual impairments, I want the application to be screen-reader friendly so that I can navigate and use the app effectively.
+- As a user with motor impairments, I want to navigate the application using keyboard shortcuts.
+
+7. #### Cloud Storage and Media Management
+
+- As a user, I want my uploaded product images to be stored securely and load fast.
+- As a user, I want the application to only accept valid image files to ensure consistency and safety.
+
+8. #### Error Handling and Feedback
+
+- As a user, I want to receive clear error messages when something goes wrong so that I understand what happened and how to proceed.
+- As a user, I want to receive feedback when my actions (like adding a product) are successful.
 
 ---
 
@@ -97,10 +103,9 @@ TOC
     "product_category_description": String,
 }`
 
-#### Entity Relationship Diagram
+#### Class Diagram
 
-![ER Diagram]()
-
+![Class Diagram](/docs/readme-assets/class_diagram.png)
 
 ---
 ---
@@ -120,9 +125,13 @@ Exo was used for heading and sub headings as it has a bold standout style that l
 
 ### Colour Scheme
 
-#### Palette
+#### Main Palette
 
-![Colour scheme](./docs/palette.png)
+![Main Colours](/docs/readme-assets/main-colours.png)
+
+#### Secondary Palette
+
+![Secondary Colours](/docs/readme-assets/secondary-colours.png)
 
 ---
 
@@ -132,10 +141,22 @@ Wireframes were designed at the start of this project to map out the site but th
 
 In addition to not having originally planned to have a custom 404 page but adding it in during the project.
 
-#### Web view
+#### Desktop view
 
 <details>
 <summary>Web View Wireframes</summary>
+
+Register
+![Desktop - Register](docs/wireframes/wf-desktop_register.png)
+
+Login
+![Desktop - Login](docs/wireframes/wf-desktop_login.png)
+
+Profile
+![Desktop - Profile](docs/wireframes/wf-desktop_profile.png)
+
+Products
+![Desktop - Products](docs/wireframes/wf-desktop_products.png)
 
 </details>
 
@@ -146,17 +167,27 @@ In addition to not having originally planned to have a custom 404 page but addin
 <details>
 <summary>Mobile View Wireframes</summary>
 
+Register
+![Mobile - Register](docs/wireframes/wf-mobile_register.png)
+
+Login
+![Mobile - Login](docs/wireframes/wf-mobile_login.png)
+
+Profile
+![Mobile - Profile](docs/wireframes/wf-mobile_profile.png)
+
+Products
+![Mobile - Products](docs/wireframes/wf-mobile_products.png)
+
 </details>
 
 ---
 
 ### Features
 
-
 ### Logo and Navigation Bar
 
-- The navbar featured on all pages is fully responsive and changes to a toggler (hamburger menu) on smaller screens and includes
-links to the Homepage, About page, Exercises and Contact us page
+- The navbar featured on all pages is fully responsive and changes to a toggler (hamburger menu) on smaller screens.
 - The link for the page the user is currently on is highlighted and bold text on active page tab.
 
 <details>
@@ -165,31 +196,19 @@ links to the Homepage, About page, Exercises and Contact us page
 </details>
 <br>
 
-### Footer
-
-- Featured on all pages and consists of social media links and copyright.
-
-<details>
-<summary>Footer Image</summary>
-
-</details>
-<br>
-
 ### Product Log
 
-- alist/tabel fo all the products that the user has logged in to the application.
+- A grid of product image cards for all the products that the user has logged in to the application.
 
 <details>
 <summary>Product Log</summary>
-
-![Product Log](docs/features/f-workouts.png)
 
 </details>
 <br>
 
 ### CRUD Products
 
-- Provides the information on what the exercise is and how long the user should be doing the exercise for, giving them a video hint or picture of exercise.
+- The user once logged in will be able to create new products, read the products that they have added to the application, update them with a new picture, notes or category and if they chose they can also delete the product from their list.
 
 <details>
 <summary>Create, Read, Update and Delete</summary>
@@ -199,17 +218,11 @@ links to the Homepage, About page, Exercises and Contact us page
 
 ### Search Products
 
-- A way for user to get in contact with the company in order find out more information or get questions answered.
+- There is search bar in the navigation menu and on the products logged list, allowing the user to search by product name, category or content in the notes.
 
-### User Setting Tasks
+### User Profile
 
-- Provides the user with information about the company including phone number, email and social media links.
-
-<details>
-<summary>Contact Info Image</summary>
-
-</details>
-<br>
+- The user, once logged in will be able to access their profile page and update their profile information such as thier username and password.
 
 ### 404 Error Page
 
@@ -221,7 +234,17 @@ links to the Homepage, About page, Exercises and Contact us page
 </details>
 <br>
 
+### 500 Error Page
+
+- Provides the user with a page to let them know that is a internal server issue and is a way to get back to home or previous page.
+
+<details>
+<summary>Error 500 Image</summary>
+
+</details>
+<br>
 ---
+
 ---
 
 ## Technologies Used
@@ -254,7 +277,7 @@ links to the Homepage, About page, Exercises and Contact us page
     This tool was used to test errors in accessibility such as the color contrast, ARIA for this project.
 
 - A11Y Color Contrast Accessibility Validator:
-    This online checker tool was used to check the contrast level opf the content of each page.
+    This online checker tool was used to check the contrast level of the content of each page.
 
 - Chrome Dev Tools:
     Dev Tools were used to analyse the sites accessibility, performance, assist with debugging issues and running reports from Lighthouse/Page Speed Insights.
@@ -263,7 +286,9 @@ links to the Homepage, About page, Exercises and Contact us page
     Am I Responsive was used to create the header image for the README file to show the site in its responsive format.
 
 ### Languages, Frameworks & Libraries
+
 ---
+
 - Python 3
 - CSS
 - HTML
@@ -271,8 +296,7 @@ links to the Homepage, About page, Exercises and Contact us page
 - Jinja2
 - MongoDB
 - PyMongo
-- Bootstrap 5.3.1:
-    Bootstrap has been used for overall responsiveness of the website, and for the layout to include navigation, cards, and footer within the relevant sections of the website.
+- Bootstrap 5.3.1
 
 ---
 ---
@@ -286,10 +310,40 @@ links to the Homepage, About page, Exercises and Contact us page
 
 ## Deployment
 
-TODO:
+### MongoDB Setup
 
-- [ ] Update deployment for Heroku Flask Depolyment
-- [ ] Add description on how user will need to create their own indexes in their db in order to search using > indexes_text_commands.md.
+Create an account on MongoDB
+Create a cluster of your choice following the instructions on MongoDB Atlas
+Access the cluster you have created and create a database with name of your choice.
+Under Overview tab, find connect button and click it.
+Choose second connection method using MongoDB's native drivers. Choose driver Python and version that is suitable to you. You will find a connection string in the Connection String section which will be used to connect to MongoDB when you set up the environment locally and to deploy to Heroku.
+Create an account with Heroku following the instructions from the site.
+
+#### Forking the Repository
+
+- Log in to GitHub and to find this project's respository: ms3-logapp.
+- Locate and use the Fork button to create a copy of the repository to your Github account.
+- You can now make edits to your copy of the project without affecting the original repository.
+
+#### Create env.py file and .gitignore
+
+- Create a `env.py` file in the root directory of the project using the `env_sample.py` file found in the in the directory.
+- Please update with your MongoDB Connect details.
+- Please ensure to add `env.py` and `__pycache__` to `.gitignore` to secure your MongoDB sensitive data
+
+#### Venv Setup & Dependencies
+
+To create a virtual environment in the root directory of the project.
+
+- Type `python3 -m venv venv` in the terminal and press Enter.
+- Type `source venv/bin/activate` in the terminal and press Enter.
+- Type `pip install -r requirements.txt` in the terminal and press Enter.
+
+#### Search Indexes Commands
+
+- In order for you to have the search capabilities within the project site you will need to add search index commands to the MongoDB Database Collections.
+<!-- This document was inspired from CI Project Walkthrough -->
+- You can do this by following the commands in this document: [Search Index Commands](/docs/search-index-cmd.md)
 
 ---
 
@@ -303,6 +357,7 @@ This site is currently deployed on [Heroku](https://www.heroku.com/) using the *
 2. Create a **Procfile** to tell Heroku what type of application is being deployed, and how to run it.
    - `echo web: python run.py > Procfile`
    - My file can be found [here](Procfile).
+
 3. Sign up for a free Heroku account, create your project app, and click the **Deploy** tab, at which point you can *Connect GitHub* as the Deployment Method, and select *Enable Automatic Deployment*.
 4. In the Heroku **Settings** tab, click on the *Reveal Config Vars* button to configure environmental variables as follows:
    - **IP** : `0.0.0.0`
@@ -310,25 +365,23 @@ This site is currently deployed on [Heroku](https://www.heroku.com/) using the *
    - **MONGO_URI** : `<link to your Mongo DB>`
    - **SECRET_KEY** : `<your own secret key>`
 
-5. Your app should be successfully deployed to Heroku at this point.
+5. Ensure that you set Debug:True to False before deployment.
+6. Your app should be successfully deployed to Heroku at this point.
 
 ---
 ---
 
 ## Credits
 
-
 ### Images & Videos
 
 - Images were generated using DALL-E AI using prompts that are related to the colour scheme and the theme of the site.
 
-
-
 ### Code
 
 - Components on the site courtesy of [Bootstrap 4.6](https://getbootstrap.com/docs/5/):
- - Navigation Bar Toggle Dropdown Menu
- - Card Deck used on the Exercises page
+- Navigation Bar Toggle Dropdown Menu
+- Card Deck used on the Exercises page
 
 - Layout of Home and Profile pages inspired from 'Design with Arifin' from Youtube video - [Clean Design Hero Section UI With Bootstrap 5](https://www.youtube.com/watch?v=tfcvq5dm1LM&list=WL&index=2&t=37s):
 
