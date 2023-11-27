@@ -33,7 +33,7 @@ mongo.db = mongo.cx[app.config["MONGO_DBNAME"]]
 @app.route("/home")
 def home():
     products = mongo.db.products.find()  # type: ignore
-    return render_template("home2.html", products=products)
+    return render_template("home.html", products=products)
 
 
 # User Authentication from CI Walkthrough Project
@@ -87,7 +87,7 @@ def profile(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     if session["user"]:
-        return render_template("profile2.html", username=username)
+        return render_template("profile.html", username=username)
     else:
         flash("You must be logged in to view your profile")
     return redirect(url_for("login"))

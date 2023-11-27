@@ -1,40 +1,33 @@
 {% extends "index.html" %} {% block content %}
 <!-- Hero -->
-<div class="container text-center">
-	<div class="home-title">
-		<h1 class="small">
-			Welcome to<span class="display-4"
-				><br />
-				Log It All!</span
-			>
-		</h1>
-		<p class="login-text mt-3">
-			This is a simple web app to log your products.
-		</p>
-		<div class="image-container">
-			<img
-				class="home-image mb-2"
-				src="{{ url_for('static', filename='images/site_images/home-image.jpeg') }}"
-				alt="Log It All Hero Image" />
-		</div>
+<section class="home-hero">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<!-- Hero text -->
+				<div class="hero-text">
+					<div class="hero-text-intro mt-3 mb-5">
+						<h1 class="small">Welcome to<br><span class="display-4"> Log It All!</span></h1>
+					</div>
+					<div class="hero-text-main text-center mt-3">
+						<p>This is a simple web app to log your products.</p><p>You can add, edit, and delete products.</p> <p>You
+							can also add, edit, and delete categories.</p>
+					</div>
+					<div class="home-btns mt-5">
+						<!-- Register button -->
+						<a class="btn btn-main btn-lg" href="{{ url_for('register')}}" role="button">Register</a>
 
-		<p class="mt-2">You can add, edit, and delete products.</p>
-		<div class="home-btns mb-3">
-			<a
-				class="btn btn-primary btn-lg"
-				href="{{ url_for('register')}}"
-				role="button"
-				>Register</a
-			>
-
-			<!-- Login button -->
-			<a
-				class="btn btn-primary btn-lg"
-				href="{{ url_for('login') }}"
-				role="button"
-				>Login</a
-			>
+						<!-- Login button -->
+						<a class="btn btn-main btn-lg" href="{{ url_for('login') }}" role="button">Login</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<!-- Hero image -->
+				<div class="hero-image">
+					<img src="{{ url_for('static', filename='images/site_images/home-image.jpeg') }}" class="rounded mx-auto d-block" alt="Hero image">
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
+</section>
 {% endblock %}
