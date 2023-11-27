@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<!-- Hero text -->
-				<div class="hero-text">
+				<div class="hero-text" data-aos="fade-up" data-aos-duration="2500">
 					<div class="hero-text-intro mt-3 mb-5">
 						<h1 class="small">Welcome to<br><span class="display-4"> Log It All!</span></h1>
 					</div>
@@ -22,12 +22,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-6" data-aos="fade-up" data-aos-duration="2500">
 				<!-- Hero image -->
 				<div class="hero-image">
 					<img src="{{ url_for('static', filename='images/site_images/home-image.jpeg') }}" class="rounded mx-auto d-block" alt="Hero image">
 				</div>
 			</div>
 		</div>
+	</div>
 </section>
 {% endblock %}
