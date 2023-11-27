@@ -468,7 +468,7 @@ section .home-hero {
     position: relative;
     right: 0;
     z-index: 9999;
-    width: 100%;
+    width: 90%;
     padding: 1rem;
     text-align: center;
     background-color: var(--secondary-color-4);
