@@ -1,6 +1,17 @@
 {% extends "index.html" %} {% block content %}
 <h2 class="mt-5 text-center text-capitalize">{{ username }}'s Profile</h2>
 <div class="container-fluid">
+	<div>
+		<p class="text-center">
+			Welcome to your <strong>Log It All</strong> profile where you will find
+			links to edit your profile and view your added products.
+		</p>
+	</div>
+	<div>
+		<img
+			src="{{ url_for('static', filename='images/site_images/image-1.jpeg') }}"
+			alt="" />
+	</div>
 	<div class="row mt-5 g-md-3 g-3">
 		<div class="col-md-6">
 			<a
