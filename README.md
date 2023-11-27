@@ -229,11 +229,11 @@ links to the Homepage, About page, Exercises and Contact us page
 - Visual Studio Code:
  I used Visual Studio Code as the IDE application with Git for version control of this project.
 
-- GitHub:
+- Git/GitHub:
     GitHub has been used to create a repository to host the project and receive updated commits from Visual Studio Code.
 
-- Balsamiq:
-    I used Balsamiq to create the wireframes for the site to help me with the basic structure the layout and have a guide to design the project with.
+- Figma:
+    I used Figma to create the wireframes for the site to help me with the basic structure the layout and have a guide to design the project with.
 
 - Coolors:
     This online colour palette selector tool was used to see what colour would work well on the site.
@@ -256,10 +256,10 @@ links to the Homepage, About page, Exercises and Contact us page
 - A11Y Color Contrast Accessibility Validator:
     This online checker tool was used to check the contrast level opf the content of each page.
 
-- Chrome/Firefox Dev Tools:
+- Chrome Dev Tools:
     Dev Tools were used to analyse the sites accessibility, performance, assist with debugging issues and running reports from Lighthouse/Page Speed Insights.
 
-- Am I Responsive:
+- [UI Dev/Am I Responsive](https://ui.dev/amiresponsive):
     Am I Responsive was used to create the header image for the README file to show the site in its responsive format.
 
 ### Languages, Frameworks & Libraries
