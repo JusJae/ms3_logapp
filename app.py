@@ -306,6 +306,7 @@ def delete_category(category_id):
     mongo.db.categories.delete_one({"_id": ObjectId(category_id)})
     return redirect(url_for("categories"))
 
+
 # Error Handling
 @app.errorhandler(404)
 def page_not_found(e):
@@ -315,7 +316,6 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_error(e):
     return render_template('500.html'), 500
-
 
 
 if __name__ == "__main__":
