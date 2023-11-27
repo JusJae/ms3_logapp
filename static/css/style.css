@@ -562,7 +562,7 @@ tr {
 th {
     font-family: 'Exo';
     font-weight: bold;
-    border: var(--main-color-dark) 0 0 2px solid !important;
+    border: var(--main-color-dark) 2px solid !important;
     border-radius: .5rem;
 }
 
@@ -611,6 +611,16 @@ th {
 }
 
 .product-card .card-title {
+    color: var(--secondary-color-dark) !important;
+    background-color: var(--secondary-color-light-1) !important;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: .75px;
+    padding: 10px;
+    border: var(--main-color-dark) 2px solid !important;
+    border-radius: .5rem;
+}
+
+.error-header {
     color: var(--secondary-color-dark) !important;
     background-color: var(--secondary-color-light-1) !important;
     font-weight: var(--font-weight-bold);
