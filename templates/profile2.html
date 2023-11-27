@@ -1,0 +1,32 @@
+{% extends "index.html" %} {% block content %}
+<section class="profile-hero">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<!-- Hero text -->
+				<div class="hero-text">
+					<div class="hero-text-intro mb-5">
+						<h2 class="mt-5 text-center text-capitalize">{{ username }}'s Profile</h2>
+					</div>
+					<div class="hero-text-main text-center mt-3">
+						<p>Welcome to your <strong>Log It All</strong> profile where you will find links to edit your profile and view your added products.</p>
+					</div>
+					<div class="hero-cta home-btns mt-5">
+						<!-- Edi profile button -->
+						<a class="btn btn-lg" href="{{ url_for('edit_profile', username=username) }}" class="btn btn-primary btn-lg w-100">Edit Profile</a>
+
+						<!-- View products button -->
+						<a class="btn btn-lg" href="{{ url_for('products') }}" role="button">View Products</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<!-- Hero image -->
+				<div class="hero-image">
+					<img src="{{ url_for('static', filename='images/site_images/image-1.jpeg') }}" class="rounded mx-auto d-block" alt="Hero image">
+				</div>
+			</div>
+		</div>
+</section>
+
+{% endblock %}
