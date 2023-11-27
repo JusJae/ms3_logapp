@@ -165,16 +165,18 @@ p {
 
 .hero-image {
     width: 100%;
-    height: 60%;
+    height: 100%;
     object-fit: cover;
     border-radius: .5rem;
-    padding: 0 2rem;
+    padding: 2rem;
+
 }
 
-.hero-image:has img {
+.hero-image img {
     width: 100%;
+    height: auto;
     border-radius: .5rem;
-    border: solid .25rem var(--main-color-dark);
+    border: solid 2px var(--main-color-dark) !important;
 }
 
 .home-btns {
@@ -203,17 +205,94 @@ p {
             44%, 0.5) !important;
 }
 
-.product-card {
-    border: 1px solid var(--main-color-light);
-    border-radius: 5px;
+/* CSS inspired from https: //growup-demo.netlify.app/ */
+section .home-hero {
+    margin: 3rem 0;
 }
 
-.product-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
+.hero-text-intro {
+    font-size: var(--header-4);
+    font-weight: var(--font-weight-bold);
+    line-height: 74px;
 }
+
+.hero-text-intro span {
+    color: var(--main-color);
+    text-shadow: 0 0 0.10rem var(--main-color-dark);
+}
+
+.hero-text-main {
+    font-size: var(--text-regular);
+    font-weight: var(--font-weight-regular);
+    line-height: 31px;
+}
+
+
+
+@media (min-width: 1399.98px) {
+    .container {
+        width: 84%;
+    }
+}
+
+@media (max-width: 576px) {
+    section.home-hero {
+        margin: 2rem 0;
+        text-align: center;
+    }
+
+    .hero-text,
+    .hero-text-intro,
+    .hero-text-main {
+        text-align: center;
+    }
+
+    .hero-text-intro {
+        font-weight: var(--font-weight-bold);
+        font-size: var(--header-3);
+        line-height: 64px;
+    }
+
+    section.home-hero img {
+        margin: 1rem 0;
+    }
+}
+
+@media (max-width: 768px) {
+    section.home-hero {
+        margin: 1rem 0;
+    }
+
+    .hero-text-intro {
+        font-weight: var(--font-weight-bold);
+        font-size: var(--header-3);
+        line-height: 64px;
+    }
+
+    section.home-hero img {
+        margin: 2rem 0;
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 992px) {
+    section.home-hero {
+        margin: 1rem 0;
+    }
+
+    .hero-text-intro {
+        font-weight: var(--font-weight-bold);
+        font-size: var(--header-3);
+        line-height: 64px;
+    }
+
+    section.home-hero img {
+        margin: 2rem 0;
+    }
+}
+
+
 
 .btn-main {
     background-color: var(--main-color) !important;
@@ -221,10 +300,13 @@ p {
     padding: 5px 10px;
 }
 
-.btn-main:hover {
+.btn-main:hover,
+.btn-main:focus,
+.btn-main:active {
     background-color: var(--main-color-dark);
 }
 
+/* Footer */
 .footer {
     background-color: var(--main-color) !important;
     color: white;
@@ -235,6 +317,7 @@ p {
 
 }
 
+/* Login and Register forms */
 .edit-profile-form,
 .login-form,
 .register-form {
@@ -318,6 +401,7 @@ p {
             44%, 0.5) !important;
 }
 
+/* Category and Product forms */
 .category-form,
 .product-form {
     border: 2px solid var(--main-color-dark);
@@ -379,6 +463,7 @@ p {
     margin-top: .5rem;
 }
 
+/* Flash messages */
 .flash-message {
     position: relative;
     right: 0;
@@ -390,107 +475,6 @@ p {
     color: var(--secondary-color-dark);
     font-weight: bold;
     font-size: 1.2rem;
-}
-
-/* CSS inspired from https: //growup-demo.netlify.app/ */
-section.home-hero {
-    margin: 5rem 0;
-}
-
-.hero-text,
-.hero-text-intro,
-.hero-text-main {
-    margin: 24px 0;
-}
-
-
-.hero-text-intro {
-    font-size: var(--header-4);
-    font-weight: var(--font-weight-bold);
-    line-height: 74px;
-}
-
-.hero-text-intro span {
-    color: var(--main-color);
-    text-shadow: 0 0 0.10rem var(--main-color-dark);
-}
-
-.hero-text-main {
-    font-size: var(--text-regular);
-    font-weight: var(--font-weight-regular);
-    line-height: 31px;
-}
-
-
-
-@media (min-width: 1399.98px) {
-    .container {
-        width: 84%;
-    }
-}
-
-@media (max-width: 576px) {
-    section.hero {
-        margin: 2rem 0;
-        text-align: center;
-    }
-
-    /* .btn {
-        display: block;
-        margin: 1rem 0;
-    } */
-
-    .ms-3 {
-        margin-left: 0 !important;
-    }
-
-    .hero-text,
-    .hero-text-intro,
-    .hero-text-main {
-        text-align: center;
-    }
-
-    .hero-text-intro {
-        font-weight: var(--font-weight-bold);
-        font-size: var(--header-3);
-        line-height: 64px;
-    }
-
-    section.hero img {
-        margin: 1rem 0;
-    }
-}
-
-@media (max-width: 768px) {
-    section.hero {
-        margin: 1rem 0;
-    }
-
-    .hero-text-intro {
-        font-weight: var(--font-weight-bold);
-        font-size: var(--header-3);
-        line-height: 64px;
-    }
-
-    section.hero img {
-        margin: 2rem 0;
-    }
-}
-
-@media (max-width: 992px) {
-    section.hero {
-        margin: 1rem 0;
-    }
-
-    .hero-text-intro {
-        font-weight: var(--font-weight-bold);
-        font-size: var(--header-3);
-        line-height: 64px;
-    }
-
-    section.hero img {
-        margin: 2rem 0;
-    }
 }
 
 /* Product categories table */
