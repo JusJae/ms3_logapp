@@ -557,11 +557,6 @@ tr {
     font-family: 'Lato';
     font-weight: var(--font-weight-light);
     border-radius: .5rem;
-    border: var(--main-color-dark) 0 0 2px solid !important;
-}
-
-th col-bold :has td {
-    font-weight: var(--font-weight-regular);
 }
 
 th {
