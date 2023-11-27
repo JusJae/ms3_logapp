@@ -4,7 +4,7 @@
 
 ![Responsive mockup image](docs/features/amiresponsive.png)
 
-> [Live Page](https://jusjae.github.io/)
+> [Live Page](https://ms3-logapp-311629709e3f.herokuapp.com/)
 
 TOC
 
@@ -23,39 +23,41 @@ TOC
 
 1. #### Account Management
 
-	• As a new user, I want to register for an account so that I can access the product log app.
- • As a registered user, I want to log in to the application so that I can manage my product list.
- • As a registered user, I want to reset my password in case I forget it.
+ - As a new user, I want to register for an account so that I can access the product log app.
+ - As a registered user, I want to log in to the application so that I can manage my product list.
+ - As a registered user, I want to reset my password in case I forget it.
 
 2. #### Product Management
 
-	• As a user, I want to add a new product to my list, including its image, so that I can keep track of my products.
- • As a user, I want to view all my products in a list or grid view so that I can easily navigate through them.
- • As a user, I want to update the details of a product, including changing its image, to keep my product information current.
- • As a user, I want to delete a product from my list when I no longer need it.
+ - As a user, I want to add a new product to my list, including its image, so that I can keep track of my products.
+ - As a user, I want to view all my products in a list or grid view so that I can easily navigate through them.
+ - As a user, I want to update the details of a product, including changing its image, to keep my product information current.
+ - As a user, I want to delete a product from my list when I no longer need it.
 
 3. #### Search and Filter
 
-	• As a user, I want to search for a product by its name to quickly find specific products.
- • As a user, I want to filter products by categories to view products of a specific type.
- • As a user, I want to sort products by the date they were added to see recent additions first.
+ - As a user, I want to search for a product by its name to quickly find specific products.
+ - As a user, I want to filter products by categories to view products of a specific type.
+ - As a user, I want to sort products by the date they were added to see recent additions first.
 4. Navigation and Layout:
- • As a user, I want a responsive layout so that I can access the application effectively on both desktop and mobile devices.
- • As a user, I want a fixed bottom footer with relevant links and information.
- • As a user, I want a navigation menu to quickly move between different sections of the application.
+ - As a user, I want a responsive layout so that I can access the application effectively on both desktop and mobile devices.
+ - As a user, I want a fixed bottom footer with relevant links and information.
+ - As a user, I want a navigation menu to quickly move between different sections of the application.
 
 5. #### Pagination and Performance
 
-• As a user, I want to view products in paginated lists so that I don’t get overwhelmed with too much data at once and the app loads faster.
+ - As a user, I want to view products in paginated lists so that I don’t get overwhelmed with too much data at once and the app loads faster.
+
 6. #### Accessibility:
- • As a user with visual impairments, I want the application to be screen-reader friendly so that I can navigate and use the app effectively.
- • As a user with motor impairments, I want to navigate the application using keyboard shortcuts.
+   
+ - As a user with visual impairments, I want the application to be screen-reader friendly so that I can navigate and use the app effectively.
+ - As a user with motor impairments, I want to navigate the application using keyboard shortcuts.
 7. #### Cloud Storage and Media Management:
- • As a user, I want my uploaded product images to be stored securely and load fast.
- • As a user, I want the application to only accept valid image files to ensure consistency and safety.
+ - As a user, I want my uploaded product images to be stored securely and load fast.
+ - As a user, I want the application to only accept valid image files to ensure consistency and safety.
 8. #### Error Handling and Feedback:
- • As a user, I want to receive clear error messages when something goes wrong so that I understand what happened and how to proceed.
- • As a user, I want to receive feedback when my actions (like adding a product) are successful.
+ - As a user, I want to receive clear error messages when something goes wrong so that I understand what happened and how to proceed.
+ - As a user, I want to receive feedback when my actions (like adding a product) are successful.
 
 ---
 
@@ -79,26 +81,26 @@ TOC
 `
 {
     "product_id": ObjectId,  // MongoDB's built-in unique identifier
-    "name": String,
-    "category": String,
+    "product_name": String,
+    "product_category": String,
     "date_added": Date,
-    "notes": String,
+    "product_notes": String,
     "image_url": String,
-    "user_id": ObjectId  // Reference to User Collection
+    "created_by": username  // Reference to User Collection
 }`
 
 ##### User Session Collection
 
 `{
-    "session_id": ObjectId,  // MongoDB's built-in unique identifier
-    "login_time": Date,
-    "logout_time": Date,
-    "user_id": ObjectId  // Reference to User Collection
+    "product_category_id": ObjectId,  // MongoDB's built-in unique identifier
+    "product_category_name": String,
+    "product_category_description": String,
 }`
 
 #### Entity Relationship Diagram
 
 ![ER Diagram]()
+
 
 ---
 ---
@@ -107,13 +109,12 @@ TOC
 
 ### Typography
 
-Exo | Lato | Oswald
+Exo | Lato | sans-serif
 
-The fonts that were used throughout the site are 'Exo', 'Lato' and 'Oswald'.  
+The fonts that were used throughout the site are 'Exo', 'Lato' and sans-serif.  
 
-Exo was used for heading and sub headings as it has a bold standout style that looks digital but welcoming to reflect the digital workout tool.
-'Lato' was used for buttons and call to action and menu for its ease of readability.
-Oswald was used for the body of text.
+Exo was used for heading and sub headings as it has a bold standout style that looks digital but welcoming to reflect the product logging tool.
+'Lato' was used for buttons and call to action and menu for its ease of readability, as well as the body of text.
 
 ---
 
@@ -127,7 +128,7 @@ Oswald was used for the body of text.
 
 ### Wireframes
 
-Wireframes were designed at the start of this project to map out the site but the site has slightly changed since it its original conception to simplify the layout and add different elements and remove unnecessary elements for current features such as a music player.
+Wireframes were designed at the start of this project to map out the site but the site has slightly changed since it its original conception to simplify the layout and add different elements and remove unnecessary elements for current features.
 
 In addition to not having originally planned to have a custom 404 page but adding it in during the project.
 
@@ -151,7 +152,6 @@ In addition to not having originally planned to have a custom 404 page but addin
 
 ### Features
 
-The page consists of four pages and nine features
 
 ### Logo and Navigation Bar
 
@@ -226,16 +226,6 @@ links to the Homepage, About page, Exercises and Contact us page
 
 ## Technologies Used
 
-- Python
-- Flask
-- CSS
-- HTML
-- Jinja2
-- MySQL
-- MongoDB
-- Bootstrap 4.6.3:
-    Bootstrap has been used for overall responsiveness of the website, and for the layout to include navigation, cards, and footer within the relevant sections of the website.
-
 - Visual Studio Code:
  I used Visual Studio Code as the IDE application with Git for version control of this project.
 
@@ -247,15 +237,6 @@ links to the Homepage, About page, Exercises and Contact us page
 
 - Coolors:
     This online colour palette selector tool was used to see what colour would work well on the site.
-
-- Canva:
- Used to design the logo and 404 error page image.
-
-- Pexels
-    Pexels was used throughout the site as they are copyright and royalty-free stock images and videos.
-
-- Mindflow
- Used to create the flowchart diagram of the user journey through the app.
 
 - Google Fonts:
     The fonts where selected from and imported to style the text on the site.
@@ -278,18 +259,27 @@ links to the Homepage, About page, Exercises and Contact us page
 - Chrome/Firefox Dev Tools:
     Dev Tools were used to analyse the sites accessibility, performance, assist with debugging issues and running reports from Lighthouse/Page Speed Insights.
 
-- Image Compressor
-    This online tool was used to compress the image file to optimize the sites loading time.
-
 - Am I Responsive:
     Am I Responsive was used to create the header image for the README file to show the site in its responsive format.
+
+### Languages, Frameworks & Libraries
+---
+- Python 3
+- CSS
+- HTML
+- Flask
+- Jinja2
+- MongoDB
+- PyMongo
+- Bootstrap 5.3.1:
+    Bootstrap has been used for overall responsiveness of the website, and for the layout to include navigation, cards, and footer within the relevant sections of the website.
 
 ---
 ---
 
 ## Testing
 
-[Testing](docs/testing/testing.md)
+[Link to Testing](docs/testing/testing.md)
 
 ---
 ---
@@ -308,17 +298,17 @@ TODO:
 This site is currently deployed on [Heroku](https://www.heroku.com/) using the **main** branch on GitHub. To implement this project on Heroku, the following steps were taken:
 
 1. Create a **requirements.txt** file so Heroku can install the required dependencies to run the app.
-    - `sudo pip3 freeze --local > requirements.txt`
-    - My file can be found [here](requirements.txt).
+   - `sudo pip3 freeze --local > requirements.txt`
+   - My file can be found [here](requirements.txt).
 2. Create a **Procfile** to tell Heroku what type of application is being deployed, and how to run it.
-    - `echo web: python run.py > Procfile`
-    - My file can be found [here](Procfile).
+   - `echo web: python run.py > Procfile`
+   - My file can be found [here](Procfile).
 3. Sign up for a free Heroku account, create your project app, and click the **Deploy** tab, at which point you can *Connect GitHub* as the Deployment Method, and select *Enable Automatic Deployment*.
 4. In the Heroku **Settings** tab, click on the *Reveal Config Vars* button to configure environmental variables as follows:
-    - **IP** : `0.0.0.0`
-    - **PORT** : `8080`
-    - **MONGO_URI** : `<link to your Mongo DB>`
-    - **SECRET_KEY** : `<your own secret key>`
+   - **IP** : `0.0.0.0`
+   - **PORT** : `5000`
+   - **MONGO_URI** : `<link to your Mongo DB>`
+   - **SECRET_KEY** : `<your own secret key>`
 
 5. Your app should be successfully deployed to Heroku at this point.
 
@@ -330,25 +320,17 @@ This site is currently deployed on [Heroku](https://www.heroku.com/) using the *
 
 ### Images & Videos
 
-![Black Images from GumRoad]()
+- Images were generated using DALL-E AI using prompts that are related to the colour scheme and the theme of the site.
 
-- Black Exercise Image pack purchased from GumRoad
--
 
-[Pexels](https://www.pexels.com/)
-
-- 'MART Production' from their 'Workout at Home' collection
-- 'Thirdman' for his 'Lifestyle' collection.
--
 
 ### Code
 
-- Components on the site courtesy of [Bootstrap 4.6](https://getbootstrap.com/docs/4.6/):
-  - Navigation Bar Toggle Dropdown Menu
-  - Card Deck used on the Exercises page
+- Components on the site courtesy of [Bootstrap 4.6](https://getbootstrap.com/docs/5/):
+ - Navigation Bar Toggle Dropdown Menu
+ - Card Deck used on the Exercises page
 
-- Components on the site courtesy of [MD Bootstrap 4](https://mdbootstrap.com/):
-  - Footer layout and styling of the buttons
+- Layout of Home and Profile pages inspired from 'Design with Arifin' from Youtube video - [Clean Design Hero Section UI With Bootstrap 5](https://www.youtube.com/watch?v=tfcvq5dm1LM&list=WL&index=2&t=37s):
 
 ---
 ---
