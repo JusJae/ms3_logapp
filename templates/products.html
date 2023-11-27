@@ -74,11 +74,50 @@
 						href="{{ url_for('delete_product', product_id=product._id) }}">
 						<i class="fas fa-trash"></i>
 					</a>
+					<!-- Button to trigger the modal -->
 					<button
 						class="btn btn-desc btn-info"
-						onclick="showDescription('{{ product.id }}')">
+						data-bs-toggle="modal"
+						data-bs-target="#productModal">
 						<i class="fas fa-info"></i>
 					</button>
+
+					<!-- Modal -->
+					<div
+						class="modal fade"
+						id="productModal"
+						tabindex="-1"
+						aria-labelledby="productModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5
+										class="modal-title"
+										id="productModalLabel">
+										Product Notes
+									</h5>
+									<button
+										type="button"
+										class="btn-close"
+										data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<!-- Product Notes Content -->
+									<p>{{ product.product_notes }}</p>
+								</div>
+								<div class="modal-footer">
+									<button
+										type="button"
+										class="btn btn-secondary"
+										data-bs-dismiss="modal">
+										Close
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				{% endif %}
 			</div>
