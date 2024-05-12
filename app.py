@@ -218,6 +218,7 @@ def add_product():
 @app.route("/edit_product/<product_id>", methods=["GET", "POST"])
 def edit_product(product_id):
     product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+    product_categories = mongo.db.categories.find().sort("product_category_name", 1)
     if request.method == "POST":
         product_name = request.form.get('product_name')
         product_category = request.form.get('product_category')
@@ -247,7 +248,6 @@ def edit_product(product_id):
         mongo.db.products.update_one({"_id": ObjectId(product_id)}, {
             "$set": submit})
         flash("Product successfully updated")
-        product_categories = mongo.db.categories.find().sort("product_category_name", 1)
     return render_template("edit_product.html", product=product, product_categories=product_categories)
 
 
